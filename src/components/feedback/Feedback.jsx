@@ -11,8 +11,6 @@ export default class Feedback extends Component {
         const option = e.target.innerText;
        this.setState(prevState => { 
             return {[option]: prevState[option] + 1}})  
-
-        this.countTotalFeedback()
     }
 
     countTotalFeedback = () => {
@@ -37,17 +35,22 @@ export default class Feedback extends Component {
             </ul>
             <h2>Statistics</h2>
             <ul>
+            {this.countTotalFeedback() < 1 ?
+            
+            <p>
+                No feedback given
+            </p>
+            :
+        <>
                 {options.map(option => <li key={option}>
             <span>{option}: {this.state[option]}</span>
         </li>)}
 
-        {this.countTotalFeedback() > 0 &&
-        <>
+        
          <li key='total'>Total: {this.countTotalFeedback()}</li>
          <li key='positive'>Positive feedback: {this.countPositiveFeedbackPercentage()}%</li>
          </>
         }
-       
             </ul>
             </>
         )
