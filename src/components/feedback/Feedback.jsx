@@ -9,7 +9,19 @@ export default class Feedback extends Component {
 
       handleClick = (e) => {
         const option = e.target.innerText;
-        return this.setState(prevState => { return {[option]: prevState[option] + 1}})  
+       this.setState(prevState => { 
+            return {[option]: prevState[option] + 1}})  
+
+        this.countTotalFeedback()
+    }
+
+    countTotalFeedback = () => {
+        return Object.values(this.state).reduce((acc, el) => acc + el, 0 )
+    }
+
+
+    countPositiveFeedbackPercentage = () => {
+        return Math.round(100 / (this.countTotalFeedback()) * this.state.good)
     }
 
       render () {
@@ -28,6 +40,14 @@ export default class Feedback extends Component {
                 {options.map(option => <li key={option}>
             <span>{option}: {this.state[option]}</span>
         </li>)}
+
+        {this.countTotalFeedback() > 0 &&
+        <>
+         <li key='total'>Total: {this.countTotalFeedback()}</li>
+         <li key='positive'>Positive feedback: {this.countPositiveFeedbackPercentage()}%</li>
+         </>
+        }
+       
             </ul>
             </>
         )
