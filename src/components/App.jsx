@@ -13,7 +13,7 @@ export default class App extends Component {
   handleClick = (e) => {
     const option = e.target.innerText;
    this.setState(prevState => { 
-        return {[option]: prevState[option] + 1}})  
+        return {[option.toLowerCase()]: prevState[option.toLowerCase()] + 1}})  
 }
 
 countTotalFeedback = () => {

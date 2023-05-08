@@ -12,11 +12,11 @@ return (
             </p>
             :
             <>
-            {options.map(option => <li key={option} className={css.descr}>
+            {options.map(option => <li key={option} className={css.item}>
                 {option}: <span className={css.number}> {props[option]}</span>
             </li>)}
-            <li key='total' className={css.descr}>Total: <span className={css.number}>{total()}</span></li>
-            <li key='positive' className={css.descr}>Positive feedback: <span className={css.number}>{percentage()}%</span></li>     
+            <li key='total' className={css.item}>Total: <span className={css.number}>{total()}</span></li>
+            <li key='positive' className={css.item}>Positive feedback: <span className={css.number}>{percentage()}%</span></li>     
             </>
         }
     </>
