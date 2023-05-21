@@ -5,7 +5,7 @@ export default function FeedbackOptions ({props, handleClick}) {
     return (
         <>
         {props.map(option => <li key={option} className={css.item}>
-            <button className={css.button} onClick={handleClick}>{option}</button>
+            <button className={css.button} onClick={()=>handleClick(option)}>{option}</button>
         </li>)}
         </>
     )

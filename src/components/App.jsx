@@ -10,42 +10,39 @@ export default class App extends Component {
     bad: 0
   }
 
-  handleClick = (e) => {
-    const option = e.target.innerText;
-   this.setState(prevState => { 
-        return {[option.toLowerCase()]: prevState[option.toLowerCase()] + 1}})  
-}
+  handleClick = (key) => {
+    this.setState(prevState => { 
+      return {[key]: prevState[key] + 1}})  
+  }
 
-countTotalFeedback = () => {
-    return Object.values(this.state).reduce((acc, el) => acc + el, 0 )
-}
+  countTotalFeedback = () => {
+      return Object.values(this.state).reduce((acc, el) => acc + el, 0 )
+  }
 
 
-countPositiveFeedbackPercentage = () => {
-    return Math.round(100 / (this.countTotalFeedback()) * this.state.good)
-}
+  countPositiveFeedbackPercentage = () => {
+      return Math.round(100 / (this.countTotalFeedback()) * this.state.good)
+  }
 
   render () {
     const options = Object.keys(this.state);
     return (
     <>
     <Section 
-    title="Please leave feedback"
-    children={
-      <FeedbackOptions 
-      props={options}
-      handleClick={this.handleClick}
-      />
-    }
-   />
+      title="Please leave feedback"
+      children={
+        <FeedbackOptions 
+          props={options}
+          handleClick={this.handleClick}
+        />}
+    />
 
     <Section title="Statistics" children={
       < Statistics 
-      props={this.state}
-      total={this.countTotalFeedback}
-      percentage={this.countPositiveFeedbackPercentage}
-      />
-    }
+        props={this.state}
+        total={this.countTotalFeedback}
+        percentage={this.countPositiveFeedbackPercentage}
+      />}
     />
     </>
     )
